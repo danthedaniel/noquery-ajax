@@ -1,8 +1,8 @@
-# ajax.js
+# noquery-ajax
 A minimalist Javascript library meant to be a replacement for jQuery's $.ajax
 
-ajax.js does not support all of the features of jQuery's ajax functionality, but
-it should handle enough so that most applications can simply perform a global
+noquery-ajax does not support all of the features of jQuery's ajax functionality,
+but it should handle enough so that most sites can simply perform a global
 replace of `$.ajax` for `ajax`.
 
 ##### Parameters
