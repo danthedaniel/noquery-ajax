@@ -5,6 +5,10 @@ noquery-ajax does not support all of the features of jQuery's ajax functionality
 but it should handle enough so that most sites can simply perform a global
 replace of `$.ajax` for `ajax`.
 
+##### Installation
+
+    npm install noquery-ajax --save
+
 ##### Parameters
 
 Parameters are passed to ajax() as a single object. The valid keys for ajax are

@@ -1,6 +1,6 @@
 {
   "name": "noquery-ajax",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A minimalist Javascript library meant to be a replacement for jQuery's $.ajax",
   "main": "index.js",
   "scripts": {
