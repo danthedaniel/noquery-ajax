@@ -9,6 +9,20 @@ replace of `$.ajax` for `ajax`.
 
     npm install noquery-ajax --save
 
+##### Importing into a Project
+
+ES6:
+
+```javascript
+import {ajax} from 'noquery-ajax';
+```
+
+Or with require statement:
+
+```javascript
+var ajax = require('noquery-ajax').ajax;
+```
+
 ##### Parameters
 
 Parameters are passed to ajax() as a single object. The valid keys for ajax are
