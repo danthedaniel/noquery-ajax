@@ -1,0 +1,22 @@
+{
+  "name": "noquery-ajax",
+  "version": "0.1.0",
+  "description": "A minimalist Javascript library meant to be a replacement for jQuery's $.ajax",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teaearlgraycold/noquery-ajax.git"
+  },
+  "keywords": [
+    "ajax",
+    "xhr"
+  ],
+  "author": "teaearlgraycold",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teaearlgraycold/ajax.js/issues"
+  },
+  "homepage": "https://github.com/teaearlgraycold/ajax.js#readme"
+}
