@@ -41,7 +41,6 @@ Notes:
 
 * If a success callback is provided, as well as a statusCode callback for code
 200, both callbacks will be executed
-* No callbacks will be executed if the server does not respond (due to a network error or otherwise)
 
 ##### Usage:
 
