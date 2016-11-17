@@ -84,6 +84,11 @@ module.exports = {
     xmlhttp.onreadystatechange = function() {
       // If the request is finished
       if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 0) {
+          // Don't do anything if a network error occurred
+          return;
+        }
+
         var response = xmlhttp.responseText;
 
         if (config.dataType === 'json') {
