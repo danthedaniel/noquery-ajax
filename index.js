@@ -13,6 +13,8 @@ module.exports = {
   ajax: function(config) {
     'use strict';
 
+    config = config || {};
+
     /* Config Structure
     {
       url: string
@@ -26,6 +28,7 @@ module.exports = {
     */
 
     var configDefaults = {
+      url: window.location.pathname,
       method: 'GET',
       async: true,
       dataType: 'json',
@@ -74,47 +77,55 @@ module.exports = {
     // Apply defaults
     mergeObject(config, configDefaults);
 
-    if (typeof config.url === 'undefined') {
-      console.error('No url provided');
-      return;
-    }
-
     var xmlhttp = initXMLhttp();
 
     xmlhttp.onreadystatechange = function() {
       // If the request is finished
       if (xmlhttp.readyState == 4) {
-        if (xmlhttp.status == 0) {
-          // Don't do anything if a network error occurred
-          return;
-        }
-
-        var response = xmlhttp.responseText;
-
-        if (config.dataType === 'json') {
-          try {
-            response = JSON.parse(response);
-          } catch (SyntaxError) {
-            console.error('Server response is not valid json, although dataType was specified as json');
-          }
-        }
-
         // If the status is a success code
         if (xmlhttp.status >= 200 && xmlhttp.status < 300) {
-          if (config.success) {
-            config.success(response, xmlhttp.readyState);
+          var response = xmlhttp.responseText;
+
+          if (config.dataType === 'json') {
+            try {
+              response = JSON.parse(response);
+            } catch (SyntaxError) {
+              console.error('Server response is not valid json, although dataType was specified as json');
+            }
           }
-        }
-        // If the status is an error code
-        else if (xmlhttp.status >= 400 && xmlhttp.status < 600) {
-          if (config.error) {
-            config.error(response, xmlhttp.readyState);
+
+          if (config.success) {
+            if (config.success.constructor == Array) {
+              config.success.forEach(function(success_callback, i) {
+                success_callback(response, xmlhttp.statusText, xmlhttp);
+              });
+            } else {
+              config.success(response, xmlhttp.statusText, xmlhttp);
+            }
+          }
+
+          // Try the statusCode object
+          if (typeof config.statusCode[xmlhttp.status] !== 'undefined') {
+            config.statusCode[xmlhttp.status](response, xmlhttp.statusText, xmlhttp);
           }
         }
 
-        // Try the statusCode object
-        if (typeof config.statusCode[xmlhttp.status] !== 'undefined') {
-          config.statusCode[xmlhttp.status](response, xmlhttp.readyState);
+        // If the status is an error code
+        else if ((xmlhttp.status >= 400 && xmlhttp.status < 600) || xmlhttp.status == 0) {
+          if (config.error) {
+            if (config.error.constructor == Array) {
+              config.error.forEach(function(error_callback, i) {
+                error_callback(xmlhttp, xmlhttp.statusText);
+              });
+            } else {
+              config.error(xmlhttp, xmlhttp.statusText);
+            }
+          }
+
+          // Try the statusCode object
+          if (typeof config.statusCode[xmlhttp.status] !== 'undefined') {
+            config.statusCode[xmlhttp.status](xmlhttp, xmlhttp.statusText);
+          }
         }
       }
     };

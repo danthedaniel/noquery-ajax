@@ -17,7 +17,7 @@ ES6:
 import {ajax} from 'noquery-ajax';
 ```
 
-Or with require statement:
+Or with a require statement:
 
 ```javascript
 var ajax = require('noquery-ajax').ajax;
@@ -28,12 +28,12 @@ var ajax = require('noquery-ajax').ajax;
 Parameters are passed to ajax() as a single object. The valid keys for ajax are
 detailed below.
 
-* `url` - string, the target of the AJAX request
+* `url` - string, the target of the AJAX request **(defaults to current page)**
 * `method` - string, the HTTP request method **(defaults to 'GET')**
 * `data` - string or object, the POST data/url parameters
 * `dataType` - string, when set to json, ajax() will automatically parse the response as json **(defaults to 'json')**
-* `success` - function, a callback that is invoked when the response code is 2XX
-* `error` - function, a callback that is invoked when the response code is 4XX-5XX
+* `success` - function or array of functions, a callback that is invoked when the response code is 2XX
+* `error` - function or array of functions, a callback that is invoked when the response code is 4XX-5XX or 0
 * `statusCode` - object, relates status codes to callbacks
 * `async` - boolean, whether the XHR is executed asynchronously **(defaults to true)**
 
@@ -52,14 +52,14 @@ ajax({
   data: {
     foo: "bar"
   },
-  success: function(data, status) {
+  success: function(data, statusText, xhr) {
     alert(data);
   },
-  error: function(data, status) {
+  error: function(xhr, statusText) {
     console.error("Error occurred");
   },
   statusCode: {
-    422: function(data, status) {
+    422: function() {
       console.log('Invalid entity!');
     }
   }
