@@ -65,7 +65,7 @@ module.exports = {
 
           if (val !== null && typeof val === 'object') {
             str.push(serialize(val, key));
-          } else {
+          } else if (val !== null && typeof val !== 'undefined') {
             str.push(encodeURIComponent(key) + '=' + encodeURIComponent(val));
           }
         }
