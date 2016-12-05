@@ -1,4 +1,7 @@
 # noquery-ajax
+
+[![npm version](https://badge.fury.io/js/noquery-ajax.svg)](https://badge.fury.io/js/noquery-ajax)
+
 A minimalistic Javascript library meant to be a replacement for jQuery's $.ajax
 
 noquery-ajax does not support all of the features of jQuery's ajax functionality,
