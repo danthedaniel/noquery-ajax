@@ -32,6 +32,7 @@ detailed below.
 * `method` - string, the HTTP request method **(defaults to 'GET')**
 * `data` - string or object, the POST data/url parameters
 * `dataType` - string, when set to json, ajax() will automatically parse the response as json **(defaults to 'json')**
+* `headers` - object, relates header names to header values
 * `success` - function or array of functions, a callback that is invoked when the response code is 2XX
 * `error` - function or array of functions, a callback that is invoked when the response code is 4XX-5XX or 0
 * `statusCode` - object, relates status codes to callbacks
@@ -50,6 +51,10 @@ ajax({
   method: "GET",
   data: {
     foo: "bar"
+  },
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
   },
   success: function(data, statusText, xhr) {
     alert(data);
