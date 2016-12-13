@@ -2,11 +2,12 @@
 
 [![npm version](https://badge.fury.io/js/noquery-ajax.svg)](https://badge.fury.io/js/noquery-ajax)
 
-A minimalistic Javascript library meant to be a replacement for jQuery's $.ajax
+A minimalistic Javascript library meant to be a replacement for jQuery's $.ajax.
 
 noquery-ajax does not support all of the features of jQuery's ajax functionality,
 but it should handle enough so that most sites can simply perform a global
-replace of `$.ajax` for `ajax`.
+replace of `$.ajax` for `ajax`. It's less than 2KB when minified, and less than 1KB
+when minified and gzipped (888 Bytes as of v0.3.0).
 
 ##### Installation
 
