@@ -33,11 +33,14 @@ function initXMLhttp() {
  * @param  {Object} obj
  */
 function mergeObject(targetObj, obj) {
-  Object.keys(obj).forEach(function(key) {
-    if (typeof targetObj[key] === 'undefined') {
-      targetObj[key] = obj[key];
+  var prop;
+  for (prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      if (typeof targetObj[prop] === 'undefined') {
+        targetObj[prop] = obj[prop];
+      }
     }
-  });
+  }
 }
 
 /**
