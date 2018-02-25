@@ -34,7 +34,7 @@ detailed below.
 
 * `url` - string, the target of the AJAX request **(defaults to current page)**
 * `method` - string, the HTTP request method **(defaults to 'GET')**
-* `data` - string or object, the POST data/url parameters
+* `data` - string or object, the POST data/url parameters. Will be encoded as `application/x-www-form-urlencoded`.
 * `dataType` - string, when set to json, ajax() will automatically parse the response as json **(defaults to 'json')**
 * `headers` - object, relates header names to header values
 * `success` - function or array of functions, a callback that is invoked when the response code is 2XX
@@ -58,7 +58,7 @@ ajax({
   },
   headers: {
     "Accept": "application/json",
-    "Content-Type": "application/json"
+    "Content-Type": "application/x-www-form-urlencoded"
   },
   success: function(data, statusText, xhr) {
     alert(data);
