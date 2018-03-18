@@ -8,7 +8,8 @@ var configDefaults = {
   method: 'GET',
   async: true,
   dataType: 'json',
-  statusCode: {}
+  statusCode: {},
+  withCredentials: false
 };
 
 /**
@@ -33,8 +34,7 @@ function initXMLhttp() {
  * @param  {Object} obj
  */
 function mergeObject(targetObj, obj) {
-  var prop;
-  for (prop in obj) {
+  for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) {
       if (typeof targetObj[prop] === 'undefined') {
         targetObj[prop] = obj[prop];
@@ -52,9 +52,8 @@ function mergeObject(targetObj, obj) {
  */
 function serialize(obj, prefix) {
   var str = [];
-  var prop;
 
-  for (prop in obj) {
+  for (var prop in obj) {
     if (obj.hasOwnProperty(prop)) {
       var key = prefix ? prefix + '[' + prop + ']' : prop;
       var val = obj[prop];
@@ -77,7 +76,7 @@ function serialize(obj, prefix) {
  * @param  {Object} headers
  */
 function addHeaders(xmlhttp, headers) {
-  for (header_name in headers) {
+  for (var header_name in headers) {
     if (headers.hasOwnProperty(header_name)) {
       xmlhttp.setRequestHeader(header_name, headers[header_name]);
     }
@@ -95,24 +94,14 @@ function ajax(config) {
 
   config = config || {};
 
-  /* Config Structure
-  {
-    url: string
-    type: string [GET, POST, HEAD, DELETE, PATCH, PUT]
-    async: bool
-    data: object
-    dataType: string
-    headers: object
-    success: function
-    error: function
-    statusCode: object {code: function, ...}
-  }
-  */
-
   // Apply defaults
   mergeObject(config, configDefaults);
 
   var xmlhttp = initXMLhttp();
+
+  if (config.withCredentials === true) {
+    xmlhttp.withCredentials = true;
+  }
 
   xmlhttp.onreadystatechange = function() {
     // If the request is finished

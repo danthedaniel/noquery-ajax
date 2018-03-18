@@ -1,0 +1,7 @@
+{
+  "compileOnSave": false,
+  "include": [
+    "index.*"
+  ],
+  "lib": ["dom"]
+}

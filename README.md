@@ -18,7 +18,7 @@ when minified and gzipped (888 Bytes as of v0.3.0).
 ES6:
 
 ```javascript
-import {ajax} from 'noquery-ajax';
+import { ajax } from 'noquery-ajax';
 ```
 
 Or with a require statement:
@@ -34,9 +34,10 @@ detailed below.
 
 * `url` - string, the target of the AJAX request **(defaults to current page)**
 * `method` - string, the HTTP request method **(defaults to 'GET')**
-* `data` - string or object, the POST data/url parameters. Will be encoded as `application/x-www-form-urlencoded`.
+* `data` - string or object, the POST data/url parameters. Will be encoded as `application/x-www-form-urlencoded`
 * `dataType` - string, when set to json, ajax() will automatically parse the response as json **(defaults to 'json')**
 * `headers` - object, relates header names to header values
+* `withCredentials` - boolean, use cookies with cross-origin requests **(defaults to false)**
 * `success` - function or array of functions, a callback that is invoked when the response code is 2XX
 * `error` - function or array of functions, a callback that is invoked when the response code is 4XX-5XX or 0
 * `statusCode` - object, relates status codes to callbacks
