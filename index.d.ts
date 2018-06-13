@@ -45,7 +45,7 @@ declare module "noquery-ajax" {
     /**
      * Mapping from status codes to callback functions.
      */
-    statusCode?: { [code: number]: Callback | Callback[] },
+    statusCode?: { [code: number]: Callback },
 
     /**
      * Function or functions invoked for a 2XX HTTP code.
